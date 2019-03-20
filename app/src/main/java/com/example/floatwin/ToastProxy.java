@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 public class ToastProxy implements InvocationHandler {
  
-     private static final String TAG = "zhangyunpeng";
      private Object mService;
      private Context mContext;
      private static boolean isUseMyProxy = false;

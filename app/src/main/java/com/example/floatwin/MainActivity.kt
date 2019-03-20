@@ -2,7 +2,6 @@ package com.example.floatwin
 
 import android.app.Activity
 import android.content.Context
-import android.content.pm.PackageManager
 import android.graphics.PixelFormat
 import android.os.Build
 import android.os.Bundle
@@ -26,11 +25,7 @@ class MainActivity : Activity() {
 
         showFloatWin()
         button.setOnClickListener {
-//            startActivity(Intent(applicationContext, SecondActivity::class.java))
-            showTipToast(applicationContext)
             Toast.makeText(applicationContext, "haha", Toast.LENGTH_LONG).show()
-            showTipToast(applicationContext)
-
         }
     }
 
@@ -82,26 +77,26 @@ class MainActivity : Activity() {
      */
     private fun createFloatWindow(context: Context, windowManager: WindowManager, view:View) {
             var wmParams = WindowManager.LayoutParams()
-        if (Build.VERSION.SDK_INT >= 26) {
-            wmParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
-        }
-        else if (Build.VERSION.SDK_INT >= 24) { /*android7.0不能用TYPE_TOAST*/
-            wmParams.type = WindowManager.LayoutParams.TYPE_PHONE
-        } else { /*以下代码块使得android6.0之后的用户不必再去手动开启悬浮窗权限*/
-            val packname = context.packageName
-            val pm = context.packageManager
-            val permission =
-                PackageManager.PERMISSION_GRANTED == pm.checkPermission(
-                    "android.permission.SYSTEM_ALERT_WINDOW",
-                    packname
-                )
-            if (permission) {
-                wmParams.type = WindowManager.LayoutParams.TYPE_PHONE
-            } else {
-                wmParams.type = WindowManager.LayoutParams.TYPE_TOAST
-            }
-        }
-//            wmParams.type = WindowManager.LayoutParams.TYPE_TOAST
+//        if (Build.VERSION.SDK_INT >= 26) {
+//            wmParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
+//        }
+//        else if (Build.VERSION.SDK_INT >= 24) { /*android7.0不能用TYPE_TOAST*/
+//            wmParams.type = WindowManager.LayoutParams.TYPE_PHONE
+//        } else { /*以下代码块使得android6.0之后的用户不必再去手动开启悬浮窗权限*/
+//            val packname = context.packageName
+//            val pm = context.packageManager
+//            val permission =
+//                PackageManager.PERMISSION_GRANTED == pm.checkPermission(
+//                    "android.permission.SYSTEM_ALERT_WINDOW",
+//                    packname
+//                )
+//            if (permission) {
+//                wmParams.type = WindowManager.LayoutParams.TYPE_PHONE
+//            } else {
+//                wmParams.type = WindowManager.LayoutParams.TYPE_TOAST
+//            }
+//        }
+            wmParams.type = WindowManager.LayoutParams.TYPE_TOAST
 
             //设置图片格式，效果为背景透明
             wmParams.format = PixelFormat.RGBA_8888
